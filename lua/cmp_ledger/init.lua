@@ -30,11 +30,9 @@ source.get_trigger_characters = function()
 end
 
 source.complete = function(_, _, callback)
-  local current_buf_name = vim.api.nvim_buf_get_name(0)
-
   Job:new({
     command = 'ledger',
-    args = { '-f', current_buf_name, 'accounts' },
+    args = { 'accounts' },
     on_exit = function(job)
       local result = job:result()
 
